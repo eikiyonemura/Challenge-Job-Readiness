@@ -37,6 +37,8 @@ class FavoritesViewController: UIViewController {
         favoriteTableView.dataSource = self
         favoriteTableView.register(UINib.init(nibName: "CelulaTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
         
+        
+        
     }
     
     private func updateTable() {
@@ -51,16 +53,21 @@ class FavoritesViewController: UIViewController {
     private func getItemsList() {
         itemsResult.removeAll()
         ItemService.getItem(itemArray: Array(favoritesArraySet)) { items in
-            for item in items {
-                self.itemsResult.append([Constants.id: item.body.id,
-                                         Constants.title: item.body.title,
-                                         Constants.price: item.body.price,
-                                         Constants.thumbnailURL: item.body.secure_thumbnail,
-                                         Constants.availableQuantity: item.body.available_quantity,
-                                         Constants.photoURL: item.body.pictures[0].secure_url,
-                                         Constants.city: item.body.seller_address.city.name,
-                                         Constants.state: item.body.seller_address.state.name])
+            if items.count == 0 {
+                self.messageLabel.isHidden = false
+            } else {
+                for item in items {
+                    self.itemsResult.append([Constants.id: item.body.id,
+                                             Constants.title: item.body.title,
+                                             Constants.price: item.body.price,
+                                             Constants.thumbnailURL: item.body.secure_thumbnail,
+                                             Constants.availableQuantity: item.body.available_quantity,
+                                             Constants.photoURL: item.body.pictures[0].secure_url,
+                                             Constants.city: item.body.seller_address.city.name,
+                                             Constants.state: item.body.seller_address.state.name])
+                }
             }
+            
         }
     }
 }

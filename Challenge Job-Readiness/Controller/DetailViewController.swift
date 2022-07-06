@@ -29,7 +29,7 @@ final class DetailViewController: UIViewController {
         navigationItem.titleView = searchBar
         navigationItem.titleView?.isHidden = true
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "arrow.backward"), style: .plain, target: self, action: #selector(returnButtonTapped))
-        navigationController?.navigationBar.tintColor = .black
+
         
         favoritesArraySet = favorites.getFavoriteItems()
         

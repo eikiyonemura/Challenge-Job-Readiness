@@ -22,6 +22,7 @@ class ListViewController: UIViewController {
     
     let categoryService = CategoryService()
     let listService = ListService()
+    let descriptionService = DescriptionService()
     
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -40,8 +41,6 @@ class ListViewController: UIViewController {
         messageLabel.isHidden = true
         getFavoriteItems()
         
-        navigationController?.navigationBar.backgroundColor = .systemYellow
-        navigationController?.navigationBar.tintColor = .black
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "arrow.backward"), style: .plain, target: self, action: nil)
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "cart"), style: .plain, target: self, action: nil)
         
@@ -144,11 +143,8 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
               let city = itemInfo[Constants.city] as? String,
               let state = itemInfo[Constants.state] as? String else { return cell }
         
-        //"R$ " + String(format: "%.2f", locale: Locale(identifier: "pt_BR"), String(data?.price ?? 0.0))
-        
         cell.titleLabel.text = title
         cell.priceLabel.text = "R$ " + String(format: "%.2f", locale: Locale(identifier: "pt_BR"), String(price).doubleValue)
-        //cell.priceLabel.text = String(format: "R$ %.2f", price)
         cell.itemImageView.image = thumbnail
         cell.subtitle1Label.text = "Quantidade disponível: \(availableQuantity)"
         cell.subtitle2Label.text = "\(city) - \(state)"
@@ -179,7 +175,7 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
         var itemInfo = ItemInfo.getItemInfo(index: indexPath.row, array: itemsResult)
         let photo = ItemService.getImage(itemInfo[Constants.photoURL] as? String)
         itemInfo[Constants.photo] = photo
-        detailVC.itemInfo = itemInfo 
+        detailVC.itemInfo = itemInfo
         navigationController?.pushViewController(detailVC, animated: true)
 
     }
