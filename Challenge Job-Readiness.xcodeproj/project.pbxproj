@@ -14,6 +14,8 @@
 		262D4359286BA5EA00C182E0 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 262D4357286BA5EA00C182E0 /* DetailViewController.xib */; };
 		262D435B286BC2EC00C182E0 /* ItemService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262D435A286BC2EC00C182E0 /* ItemService.swift */; };
 		262D435D286BCA5E00C182E0 /* CategoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262D435C286BCA5E00C182E0 /* CategoryService.swift */; };
+		2649DF5E2876451700473364 /* Challenge_Job_ReadinessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2649DF5D2876451700473364 /* Challenge_Job_ReadinessTests.swift */; };
+		2649DF662876453700473364 /* item.json in Resources */ = {isa = PBXBuildFile; fileRef = 2649DF652876453700473364 /* item.json */; };
 		26A8EFE9286A40640035CA77 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8EFE8286A40640035CA77 /* AppDelegate.swift */; };
 		26A8EFEB286A40640035CA77 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8EFEA286A40640035CA77 /* SceneDelegate.swift */; };
 		26A8EFF2286A40650035CA77 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26A8EFF1286A40650035CA77 /* Assets.xcassets */; };
@@ -41,6 +43,16 @@
 		26CCA954286F98DA00BF9C8E /* FavoriteItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CCA953286F98DA00BF9C8E /* FavoriteItems.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		2649DF5F2876451700473364 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 26A8EFDD286A40640035CA77 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 26A8EFE4286A40640035CA77;
+			remoteInfo = "Challenge Job-Readiness";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		261DAB6B286B2375002E23CD /* ResultItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultItem.swift; sourceTree = "<group>"; };
 		262D4350286B906B00C182E0 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
@@ -48,6 +60,9 @@
 		262D4357286BA5EA00C182E0 /* DetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
 		262D435A286BC2EC00C182E0 /* ItemService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemService.swift; sourceTree = "<group>"; };
 		262D435C286BCA5E00C182E0 /* CategoryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryService.swift; sourceTree = "<group>"; };
+		2649DF5B2876451700473364 /* Challenge Job-ReadinessTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Challenge Job-ReadinessTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2649DF5D2876451700473364 /* Challenge_Job_ReadinessTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Challenge_Job_ReadinessTests.swift; sourceTree = "<group>"; };
+		2649DF652876453700473364 /* item.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = item.json; sourceTree = "<group>"; };
 		26A8EFE5286A40640035CA77 /* Challenge Job-Readiness.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Challenge Job-Readiness.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		26A8EFE8286A40640035CA77 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		26A8EFEA286A40640035CA77 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -81,6 +96,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		2649DF582876451700473364 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		26A8EFE2286A40640035CA77 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -92,10 +114,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2649DF5C2876451700473364 /* Challenge Job-ReadinessTests */ = {
+			isa = PBXGroup;
+			children = (
+				2649DF642876452600473364 /* fixtures */,
+				2649DF5D2876451700473364 /* Challenge_Job_ReadinessTests.swift */,
+			);
+			path = "Challenge Job-ReadinessTests";
+			sourceTree = "<group>";
+		};
+		2649DF642876452600473364 /* fixtures */ = {
+			isa = PBXGroup;
+			children = (
+				2649DF652876453700473364 /* item.json */,
+			);
+			path = fixtures;
+			sourceTree = "<group>";
+		};
 		26A8EFDC286A40640035CA77 = {
 			isa = PBXGroup;
 			children = (
 				26A8EFE7286A40640035CA77 /* Challenge Job-Readiness */,
+				2649DF5C2876451700473364 /* Challenge Job-ReadinessTests */,
 				26A8EFE6286A40640035CA77 /* Products */,
 				EF48D38B23B8B3996FA7C9B3 /* Pods */,
 				ED33B83A0FE3337603BC919B /* Frameworks */,
@@ -106,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				26A8EFE5286A40640035CA77 /* Challenge Job-Readiness.app */,
+				2649DF5B2876451700473364 /* Challenge Job-ReadinessTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -209,6 +250,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		2649DF5A2876451700473364 /* Challenge Job-ReadinessTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2649DF632876451700473364 /* Build configuration list for PBXNativeTarget "Challenge Job-ReadinessTests" */;
+			buildPhases = (
+				2649DF572876451700473364 /* Sources */,
+				2649DF582876451700473364 /* Frameworks */,
+				2649DF592876451700473364 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2649DF602876451700473364 /* PBXTargetDependency */,
+			);
+			name = "Challenge Job-ReadinessTests";
+			productName = "Challenge Job-ReadinessTests";
+			productReference = 2649DF5B2876451700473364 /* Challenge Job-ReadinessTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		26A8EFE4286A40640035CA77 /* Challenge Job-Readiness */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 26A8EFF9286A40650035CA77 /* Build configuration list for PBXNativeTarget "Challenge Job-Readiness" */;
@@ -238,6 +297,10 @@
 				LastSwiftUpdateCheck = 1340;
 				LastUpgradeCheck = 1340;
 				TargetAttributes = {
+					2649DF5A2876451700473364 = {
+						CreatedOnToolsVersion = 13.4.1;
+						TestTargetID = 26A8EFE4286A40640035CA77;
+					};
 					26A8EFE4286A40640035CA77 = {
 						CreatedOnToolsVersion = 13.4.1;
 					};
@@ -257,11 +320,20 @@
 			projectRoot = "";
 			targets = (
 				26A8EFE4286A40640035CA77 /* Challenge Job-Readiness */,
+				2649DF5A2876451700473364 /* Challenge Job-ReadinessTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		2649DF592876451700473364 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2649DF662876453700473364 /* item.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		26A8EFE3286A40640035CA77 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -323,6 +395,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		2649DF572876451700473364 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2649DF5E2876451700473364 /* Challenge_Job_ReadinessTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		26A8EFE1286A40640035CA77 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -354,6 +434,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		2649DF602876451700473364 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 26A8EFE4286A40640035CA77 /* Challenge Job-Readiness */;
+			targetProxy = 2649DF5F2876451700473364 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		26A8EFF3286A40650035CA77 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -366,6 +454,40 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		2649DF612876451700473364 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "eikiyonemura.Challenge-Job-ReadinessTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Challenge Job-Readiness.app/Challenge Job-Readiness";
+			};
+			name = Debug;
+		};
+		2649DF622876451700473364 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "eikiyonemura.Challenge-Job-ReadinessTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Challenge Job-Readiness.app/Challenge Job-Readiness";
+			};
+			name = Release;
+		};
 		26A8EFF7286A40650035CA77 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -539,6 +661,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		2649DF632876451700473364 /* Build configuration list for PBXNativeTarget "Challenge Job-ReadinessTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2649DF612876451700473364 /* Debug */,
+				2649DF622876451700473364 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		26A8EFE0286A40640035CA77 /* Build configuration list for PBXProject "Challenge Job-Readiness" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
