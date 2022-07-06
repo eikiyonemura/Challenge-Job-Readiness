@@ -142,24 +142,12 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
         
         let itemInfo = ItemInfo.getItemInfo(index: indexPath.row, array: itemsResult)
         
-        guard let id = itemInfo[Constants.id] as? String,
-              let title = itemInfo[Constants.title] as? String,
-              let price = itemInfo[Constants.price] as? Double,
-              let thumbnail = itemInfo[Constants.thumbnail] as? UIImage,
-              let availableQuantity = itemInfo[Constants.availableQuantity] as? Int,
-              let city = itemInfo[Constants.city] as? String,
-              let state = itemInfo[Constants.state] as? String else { return cell }
+        guard let id = itemInfo[Constants.id] as? String else { return cell }
 
-        cell.titleLabel.text = title
-        cell.priceLabel.text = "R$ " + String(format: "%.2f", locale: Locale(identifier: "pt_BR"), String(price).doubleValue)
-        cell.itemImageView.image = thumbnail
-        cell.subtitle1Label.text = "Quantidade disponível: \(availableQuantity)"
-        cell.subtitle2Label.text = "\(city) - \(state)"
-
-        let favoriteImageName =  favoritesArraySet.contains(id) ? "heart.fill" : "heart"
-        cell.favoriteButton.setImage(UIImage(systemName: favoriteImageName), for: .normal)
-
-
+        let itemFavorite =  favoritesArraySet.contains(id) ? true : false
+        
+        cell.set(itemInfo, itemFavorite)
+        
         cell.favoritar = {
 
             if self.favoritesArraySet.contains(id) {
@@ -169,7 +157,6 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
                 self.favoritesArraySet.insert(id)
                 cell.favoriteButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
             }
-
             self.favorites.saveFavoriteItems(itemArraySet: self.favoritesArraySet)
         }
         

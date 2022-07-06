@@ -19,7 +19,6 @@ final class FavoritesViewController: UIViewController {
         }
     }
     
-    
     @IBOutlet weak var favoriteTableView: UITableView!
     @IBOutlet weak var messageLabel: UILabel!
     
@@ -36,8 +35,6 @@ final class FavoritesViewController: UIViewController {
         favoriteTableView.delegate = self
         favoriteTableView.dataSource = self
         favoriteTableView.register(UINib.init(nibName: "CelulaTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
-        
-        
         
     }
     
@@ -67,7 +64,6 @@ final class FavoritesViewController: UIViewController {
                                              Constants.state: item.body.seller_address.state.name])
                 }
             }
-            
         }
     }
 }
@@ -82,23 +78,14 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
         
         let itemInfo = ItemInfo.getItemInfo(index: indexPath.row, array: itemsResult)
         
-        guard let id = itemInfo[Constants.id] as? String,
-              let title = itemInfo[Constants.title] as? String,
-              let price = itemInfo[Constants.price] as? Double,
-              let thumbnail = itemInfo[Constants.thumbnail] as? UIImage,
-              let availableQuantity = itemInfo[Constants.availableQuantity] as? Int,
-              let city = itemInfo[Constants.city] as? String,
-              let state = itemInfo[Constants.state] as? String else { return cell }
+        guard let id = itemInfo[Constants.id] as? String else { return cell }
+
+        let itemFavorite =  favoritesArraySet.contains(id) ? true : false
         
-        cell.titleLabel.text = title
-        cell.priceLabel.text = "R$ " + String(format: "%.2f", locale: Locale(identifier: "pt_BR"), String(price).doubleValue)
-        cell.itemImageView.image = thumbnail
-        cell.favoriteButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
-        cell.subtitle1Label.text = "Quantidade disponível: \(availableQuantity)"
-        cell.subtitle2Label.text = "\(city) - \(state)"
-        
+        cell.set(itemInfo, itemFavorite)
+    
         cell.favoritar = {
-            
+
             if self.favoritesArraySet.contains(id) {
                 self.favoritesArraySet.remove(id)
                 self.itemsResult.remove(at: indexPath.row)
