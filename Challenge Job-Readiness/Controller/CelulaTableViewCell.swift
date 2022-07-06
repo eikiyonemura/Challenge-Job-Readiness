@@ -7,10 +7,10 @@
 
 import UIKit
 
-class CelulaTableViewCell: UITableViewCell {
+final class CelulaTableViewCell: UITableViewCell {
     
     var favoritar: (() -> Void)? = nil
-    
+        
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var subtitle1Label: UILabel!
@@ -18,7 +18,6 @@ class CelulaTableViewCell: UITableViewCell {
     @IBOutlet weak var itemImageView: UIImageView!
     @IBOutlet weak var favoriteButton: UIButton!
     
-
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -29,6 +28,10 @@ class CelulaTableViewCell: UITableViewCell {
     @IBAction func favoriteButtonTapped(_ sender: Any) {
         
         favoritar?()
+        
     }
     
+  
+    
+
 }

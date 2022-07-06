@@ -7,23 +7,22 @@
 
 import UIKit
 
-class ListViewController: UIViewController {
+final class ListViewController: UIViewController {
     
-    var lista: [String] = []
+    private var lista: [String] = []
     
-    var itemsResult = [[String: Any]]() {
+    private var itemsResult = [[String: Any]]() {
         didSet {
             listTableView.reloadData()
         }
     }
     
-    var favoritesArraySet = Set<String>()
-    let favorites = FavoriteItems()
+    private var favoritesArraySet = Set<String>()
+    private let favorites = FavoriteItems()
     
-    let categoryService = CategoryService()
-    let listService = ListService()
-    let descriptionService = DescriptionService()
-    
+    private let categoryService = CategoryService()
+    private let listService = ListService()
+    private let descriptionService = DescriptionService()
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var loadingView: UIView!
@@ -39,7 +38,6 @@ class ListViewController: UIViewController {
         super.viewDidLoad()
         
         messageLabel.isHidden = true
-        getFavoriteItems()
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "arrow.backward"), style: .plain, target: self, action: nil)
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "cart"), style: .plain, target: self, action: nil)
@@ -74,39 +72,50 @@ class ListViewController: UIViewController {
         itemsResult.removeAll()
         categoryService.getCategory(category: searchCategory) { category in
             self.startActivity()
-            self.listService.getList(category: category[0].category_id) { content in
-                guard let content = content else {
-                    self.alertaErro()
-                    return
-                }
-                for content in content.content {
-                    if content.type == "ITEM" {
-                        self.lista.append(content.id)
+            if category.isEmpty {
+                print("Erro ao procurar categoria")
+                self.alertaErro()
+                return
+            } else {
+                self.listService.getList(category: category[0].category_id) { content in
+                    guard let content = content else {
+                        print("Erro ao procurar top 20")
+                        self.alertaErro()
+                        return
                     }
-                }
-                if self.lista.count == 0 {
-                    self.alertaErro()
-                } else {
-                    self.messageLabel.isHidden = true
-                    ItemService.getItem(itemArray: self.lista) { items in
-                        if items.count == 0 {
-                            self.alertaErro()
-                        } else {
-                            for item in items {
-                                self.itemsResult.append([Constants.id: item.body.id,
-                                                         Constants.title: item.body.title,
-                                                         Constants.price: item.body.price,
-                                                         Constants.thumbnailURL: item.body.secure_thumbnail,
-                                                         Constants.availableQuantity: item.body.available_quantity,
-                                                         Constants.photoURL: item.body.pictures[0].secure_url,
-                                                         Constants.city: item.body.seller_address.city.name,
-                                                         Constants.state: item.body.seller_address.state.name])
+                    for content in content.content {
+                        if content.type == "ITEM" {
+                            self.lista.append(content.id)
+                        }
+                    }
+                    if self.lista.count == 0 {
+                        print("Não existem itens")
+                        self.alertaErro()
+                        return
+                    } else {
+                        self.messageLabel.isHidden = true
+                        ItemService.getItem(itemArray: self.lista) { items in
+                            if items.count == 0 {
+                                print("Erro ao procurar itens")
+                                self.alertaErro()
+                            } else {
+                                for item in items {
+                                    self.itemsResult.append([Constants.id: item.body.id,
+                                                             Constants.title: item.body.title,
+                                                             Constants.price: item.body.price,
+                                                             Constants.thumbnailURL: item.body.secure_thumbnail,
+                                                             Constants.availableQuantity: item.body.available_quantity,
+                                                             Constants.photoURL: item.body.pictures[0].secure_url,
+                                                             Constants.city: item.body.seller_address.city.name,
+                                                             Constants.state: item.body.seller_address.state.name])
+                                }
+                                self.stopActivity()
                             }
-                            self.stopActivity()
                         }
                     }
                 }
             }
+            
         }
     }
     
@@ -119,8 +128,6 @@ class ListViewController: UIViewController {
         self.present(ac, animated: true)
         messageLabel.isHidden = false
     }
-    
-
 }
 
 // MARK: UITableViewDelegate, UITableViewDataSource
@@ -142,19 +149,19 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
               let availableQuantity = itemInfo[Constants.availableQuantity] as? Int,
               let city = itemInfo[Constants.city] as? String,
               let state = itemInfo[Constants.state] as? String else { return cell }
-        
+
         cell.titleLabel.text = title
         cell.priceLabel.text = "R$ " + String(format: "%.2f", locale: Locale(identifier: "pt_BR"), String(price).doubleValue)
         cell.itemImageView.image = thumbnail
         cell.subtitle1Label.text = "Quantidade disponível: \(availableQuantity)"
         cell.subtitle2Label.text = "\(city) - \(state)"
-        
+
         let favoriteImageName =  favoritesArraySet.contains(id) ? "heart.fill" : "heart"
         cell.favoriteButton.setImage(UIImage(systemName: favoriteImageName), for: .normal)
-        
+
 
         cell.favoritar = {
-            
+
             if self.favoritesArraySet.contains(id) {
                 self.favoritesArraySet.remove(id)
                 cell.favoriteButton.setImage(UIImage(systemName: "heart"), for: .normal)
@@ -162,7 +169,7 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
                 self.favoritesArraySet.insert(id)
                 cell.favoriteButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
             }
-            
+
             self.favorites.saveFavoriteItems(itemArraySet: self.favoritesArraySet)
         }
         
@@ -188,7 +195,8 @@ extension ListViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let search = searchBar.text else { return }
         searchBar.resignFirstResponder()
-        getItemsList(searchCategory: search)
+        let searchWithNoSpace = search.filter({ !$0.isWhitespace })
+        getItemsList(searchCategory: searchWithNoSpace)
     }
 }
 

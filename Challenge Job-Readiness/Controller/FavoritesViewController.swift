@@ -7,12 +7,12 @@
 
 import UIKit
 
-class FavoritesViewController: UIViewController {
+final class FavoritesViewController: UIViewController {
     
-    var favoritesArraySet = Set<String>()
-    let favorites = FavoriteItems()
+    private var favoritesArraySet = Set<String>()
+    private let favorites = FavoriteItems()
     
-    var itemsResult = [[String: Any]]() {
+    private var itemsResult = [[String: Any]]() {
         didSet {
             favoriteTableView.reloadData()
             updateTable()

@@ -23,13 +23,11 @@ final class ListService {
                     if let data = data {
                         let sugestion = try JSONDecoder().decode(Content.self, from: data)
                         completion(sugestion)
-   
                     }
                 } catch {
                     completion(nil)
                 }
             case.failure(_):
-                print("Erro ao carregar top 20")
                 completion(nil)
             }
         }

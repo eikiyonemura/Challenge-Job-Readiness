@@ -6,7 +6,7 @@
 //
 
 struct Constants {
-    static let token = "APP_USR-8154154208191549-070514-f1b2f8cfe4ebf0473f68e49f4b898e60-70614683"
+    static let token = "APP_USR-8154154208191549-070613-461ccbcf83b1d670f266a35a3903f9b0-70614683"
     
     static let id = "id"
     static let title = "title"

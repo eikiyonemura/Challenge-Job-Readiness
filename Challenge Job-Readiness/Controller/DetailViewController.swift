@@ -9,7 +9,7 @@ import UIKit
 
 final class DetailViewController: UIViewController {
     
-    let descriptioService = DescriptionService()
+    private let descriptioService = DescriptionService()
 
     var itemInfo = [String: Any]()
     
@@ -21,6 +21,9 @@ final class DetailViewController: UIViewController {
     @IBOutlet weak private var priceLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     
+    override func viewWillAppear(_ animated: Bool) {
+        getFavoriteItems()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,22 +33,22 @@ final class DetailViewController: UIViewController {
         navigationItem.titleView?.isHidden = true
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "arrow.backward"), style: .plain, target: self, action: #selector(returnButtonTapped))
 
-        
-        favoritesArraySet = favorites.getFavoriteItems()
-        
-        guard let id = itemInfo[Constants.id] as? String,
-              let title = itemInfo[Constants.title] as? String,
+        guard let title = itemInfo[Constants.title] as? String,
               let image = itemInfo[Constants.photo] as? UIImage,
               let price = itemInfo[Constants.price] as? Double else { return }
-        
-        let imageName = favoritesArraySet.contains(id) ? "heart.fill" : "heart"
-        setUpBarButtons(favoriteImage: imageName, idFavorite: id)
-        
+                
         titleLabel.text = title
         photoImageView.image = image
         priceLabel.text = "R$ " + String(format: "%.2f", locale: Locale(identifier: "pt_BR"), String(price).doubleValue)
-        updateScreen(id: id)
         
+    }
+    
+    private func getFavoriteItems() {
+        guard let id = itemInfo[Constants.id] as? String else { return }
+        favoritesArraySet = favorites.getFavoriteItems()
+        let imageName = favoritesArraySet.contains(id) ? "heart.fill" : "heart"
+        setUpBarButtons(favoriteImage: imageName, idFavorite: id)
+        updateScreen(id: id)
     }
     
     private func updateScreen(id: String) {
